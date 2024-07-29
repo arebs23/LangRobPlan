@@ -1,0 +1,44 @@
+The image shows a peg puzzle with rings stacked on the leftmost peg. From top to bottom, the order is as follows:
+
+1. Purple ring
+2. Blue ring
+3. Orange ring
+4. Red ring
+
+Now, let's move all disks to the rightmost peg while keeping the rule that larger disks are below. 
+
+### Initial Ordering:
+```
+peg1: red_ring orange_ring blue_ring purple_ring
+peg2: none
+peg3: none
+```
+
+In PDDL format:
+
+```lisp
+(define (problem hanoi1)
+    (:domain hanoi)
+    (:objects
+        peg1 peg2 peg3
+        red_ring orange_ring blue_ring purple_ring
+    )
+    (:init
+        (clear purple_ring)
+        (clear peg2)
+        (clear peg3)
+        (on purple_ring blue_ring)
+        (on blue_ring orange_ring)
+        (on orange_ring red_ring)
+        (on red_ring peg1)
+    )
+    (:goal (and 
+        (on red_ring peg3) 
+        (on orange_ring red_ring) 
+        (on blue_ring orange_ring) 
+        (on purple_ring blue_ring)
+    ))
+)
+```
+
+This PDDL defines the initial configuration of rings on peg1 and specifies the goal where all rings are transferred in the correct order to peg3.

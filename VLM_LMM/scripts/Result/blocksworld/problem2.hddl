@@ -1,0 +1,30 @@
+
+(define
+        (problem pfile01)
+        (:domain domain_htn)
+    (:objects
+        pink_block - block
+        purple_block - block
+        blue_block - block
+        red_block - block
+        robot - robot
+    )
+        (:htn
+                :parameters ()
+                :subtasks (and
+                        (task0 (stack_item purple_block pink_block))
+                        (task1 (stack_item blue_block purple_block))
+                        (task2 (stack_item red_block blue_block))
+                )
+                :ordering (and
+                        (< task1 task0)
+                        (< task2 task1)
+                )
+        )
+        (:init
+        (ontable blue_block)
+        (on blue_block purple_block)
+        (on purple_block pink_block)
+        (ontable red_block)
+    )
+)

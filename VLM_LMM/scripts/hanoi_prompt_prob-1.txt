@@ -1,0 +1,29 @@
+I want you to solve a planning problem. Your tasks are:
+
+1. Generate the goal state in PDDL format based on user input in form of natural language.
+2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
+
+An example is:
+
+natural language Instruction: "Move all disks to the rightmost peg while keeping a rule that larger disks are below."
+(define (problem hanoi1)
+    (:domain hanoi)
+    (:objects
+        peg1
+        peg2
+        peg3
+        green_disk1
+        blue_disk1
+        pink_disk1
+    )
+        (:init
+            (clear green_disk1)
+            (clear peg2)
+            (clear peg3)
+            (on green_disk1 blue_disk1)
+            (on blue_disk1 pink_disk1)
+            (on pink_disk1 peg1)
+            
+        )
+    (:goal (and (on pink_disk1 peg3) (on blue_disk1 pink_disk1) (on green_disk1 blue_disk1)))
+)

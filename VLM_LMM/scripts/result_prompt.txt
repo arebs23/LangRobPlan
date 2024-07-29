@@ -1,0 +1,47 @@
+Here is the initial configuration:
+
+- Red disk: Bottommost (largest) on the left peg
+- Blue disk: Middle here
+- Green disk: Topmost (smallest)
+
+To achieve the goal of transferring all disks to the rightmost peg while maintaining the rule, follow these move sequences:
+
+### Initial Ordering:
+1. Red disk on left peg
+2. Blue disk on left peg
+3. Green disk on left peg
+
+### Actions:
+Below is the sequence of actions for the Tower of Hanoi problem.
+
+1. Move the Green disk (smallest) to the rightmost peg (middle_peg -> right_peg).
+2. Move the Blue disk to the middle peg (left_peg -> middle_peg).
+3. Move the Green disk to the middle peg (right_peg -> middle_peg).
+4. Move the Red disk (largest) to the rightmost peg (left_peg -> right_peg).
+5. Move the Green disk to the left peg (middle_peg -> left_peg).
+6. Move the Blue disk to the rightmost peg (middle_peg -> right_peg).
+7. Move the Green disk to the rightmost peg (left_peg -> right_peg).
+
+### Parsing into the requested format:
+```
+(:objects
+    red_disk - item
+    blue_disk - item
+    green_disk - item
+    left_peg - location
+    middle_peg - location
+    right_peg - location
+    arm1 - robot
+)
+
+(:htn
+    :parameters ()
+    :subtasks (and
+        (task0 (move_item green_disk wp_left_peg wp_right_peg))
+        (task1 (move_item blue_disk wp_left_peg wp_middle_peg))
+        (task2 (move_item green_disk wp_right_peg wp_middle_peg))
+        (task3 (move_item red_disk wp_left_peg wp_right_peg))
+        (task4 (move_item green_disk wp_middle_peg wp_left_peg))
+        (task5 (move_item blue_disk wp_middle_peg wp_right_peg))
+        (task6 (move_item green_disk wp_left_peg wp_right_peg))
+   

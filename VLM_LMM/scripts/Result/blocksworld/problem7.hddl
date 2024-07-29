@@ -1,0 +1,40 @@
+
+(define
+        (problem pfile01)
+        (:domain domain_htn)
+    (:objects
+        yellow_block - block
+        pink_block - block
+        green_block - block
+        red_block - block
+        purple_block - block
+        orange_block - block
+        robot - robot
+    )
+        (:htn
+                :parameters ()
+                :subtasks (and
+                        (task0 (stack_item pink_block green_block))
+                        (task1 (stack_item yellow_block pink_block))
+                        (task2 (stack_item red_block purple_block))
+                        (task3 (stack_item green_block red_block))
+                        (task4 (stack_item purple_block orange_block))
+                )
+                :ordering (and
+                        (< task0 task1)
+                        (< task2 task3)
+                        (< task3 task0)
+                        (< task4 task2)
+                )
+        )
+
+
+        (:init
+        (ontable green_block)
+        (ontable purple_block)
+        (ontable orange_block)
+        (on pink_block green_block)
+        (on yellow_block pink_block)
+        (on red_block purple_block)
+    )
+)

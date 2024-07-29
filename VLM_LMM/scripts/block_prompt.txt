@@ -1,0 +1,25 @@
+I want you to solve a planning problem. Your tasks are:
+
+1. Generate the goal state in PDDL format based on user input in form of natural language.
+2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
+
+An example is:
+
+natural language Instruction: "Create a stack of block: pink over red over yellow over green."
+(define (problem blocksworld1)
+    (:domain blocksworld)
+    (:objects
+        green_block - block
+        yellow_block - block
+        red_block - block
+        pink_block - block
+        robot - robot
+    )
+    (:init
+        (ontable green_block)
+        (ontable yellow_block)
+        (ontable red_block)
+        (ontable pink_block)
+    )
+    (:goal (and (on pink_block red_block) (on red_block yellow_block) (on yellow_block green_block)))
+)

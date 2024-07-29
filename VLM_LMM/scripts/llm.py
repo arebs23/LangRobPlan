@@ -1,0 +1,172 @@
+import os
+import base64
+from openai import OpenAI
+import pprint
+from functools import lru_cache
+
+
+
+
+# def encode_image(image_path):
+#   with open(image_path, "rb") as image_file:
+#     return base64.b64encode(image_file.read()).decode('utf-8')
+
+
+
+system_prompt = '''
+I want you to solve a planning problem. Your tasks are:
+
+1. Generate the goal state in PDDL format based on user input in form of natural language.
+2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
+
+An example is:
+
+natural language Instruction: "Move all disks to the rightmost peg while keeping a rule that larger disks are below."
+(define (problem hanoi1)
+    (:domain hanoi)
+    (:objects
+        peg1
+        peg2
+        peg3
+        green_disk1
+        blue_disk1
+        pink_disk1
+    )
+        (:init
+            (clear green_disk1)
+            (clear peg2)
+            (clear peg3)
+            (on green_disk1 blue_disk1)
+            (on blue_disk1 pink_disk1)
+            (on pink_disk1 peg1)
+            
+        )
+    (:goal (and (on pink_disk1 peg3) (on blue_disk1 pink_disk1) (on green_disk1 blue_disk1)))
+)
+
+'''
+
+
+
+# img_path = '/home/victor/Downloads/problem1.jpg'
+
+
+import base64
+import requests
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "your-api"))
+
+# Function to encode the image
+def encode_image(image_path):
+  with open(image_path, "rb") as image_file:
+    return base64.b64encode(image_file.read()).decode('utf-8')
+
+# Path to your image
+
+
+MODEL="gpt-4o"
+@lru_cache()
+def analyze_image(img_path, user_prompt, system_prompt):
+    base64_image = encode_image(img_path)
+    response = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": [
+            {"type": "text", "text": user_prompt},
+            {"type": "image_url", "image_url": {
+                "url": f"data:image/png;base64,{base64_image}"}
+            }
+        ]}
+    ],
+    temperature=0.0,
+)
+
+
+    return print(response.choices[0].message.content)
+
+# def api_call(img_path, prompt, temperature=0):
+#     base64_image = encode_image(img_path)
+#     response = client.chat.completions.create(
+#         model="gpt-4-vision-preview",
+#         messages=[
+#             {
+#                 "role": "user",
+#                 "content": [
+#                     {
+#                         "type": "image_url",
+#                         "image_url": {
+#                             "url": f"data:image/jpeg;base64,{base64_image}",
+#                             "detail": "high"
+#                         },
+#                     },
+#                     {
+#                         "type": "text",
+#                         "text": prompt
+#                     },
+#                 ],
+#             }
+#         ],
+#         temperature=temperature,
+#         max_tokens=1000,
+#     )
+#     return response
+
+if __name__ == '__main__':
+    img_path = "/home/aregbs/Desktop/VLM_LMM-1/VLM_LMM/Prompt_vlm/hanoi/hanoi-observation/problem9.png"
+    user_prompt = "Move all disks to the rightmost peg while keeping a rule that larger disks are below."
+    response = analyze_image(img_path, user_prompt, system_prompt)
+    print(response)
+
+
+# class ImageAnalyzer:
+#     def __init__(self, max_tokens=1000, top_p=0.1):
+#         self.client = OpenAI()
+#         self.max_tokens = max_tokens
+#         self.top_p = top_p
+
+    
+#     def read_prompt(self, path):
+#         # Read the prompt from a file or user input
+#         try:
+#             with open(path, 'r') as file:
+#                 return file.read()
+#         except FileNotFoundError:
+#             print(f"Error: The file {path} does not exist.")
+#             return None
+
+
+#     def analyze_image(image_url, prompt, system_prompt):
+#         base64_image = encode_image(img_path)
+#         if not base64_image:
+#             return "error encoding image"
+#         system_prompt = read_prompt(path)
+#         if not system_prompt:
+#             return print("Error: The system prompt file is not found.")
+#         response = client.chat.completions.create(
+#         model="gpt-4-vision-preview",
+#         messages=[
+#             {
+#                 "role": "system",
+#                 "content": system_prompt
+#             },
+#             {
+#                 "role": "user",
+#                 "content": [
+#                     {
+#                         "type": "image_url",
+#                         "image_url": f"data:image/jpeg;base64,{base64_image}",
+#                     },
+#                 ],
+#             },
+#             {
+#                 "role": "user",
+#                 "content": prompt
+#             }
+#         ],
+#             max_tokens=self.max_tokens,
+#             top_p=self.top_p
+#         )
+
+#         return response.choices[0].message.content
+
