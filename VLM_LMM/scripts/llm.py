@@ -49,7 +49,7 @@ natural language Instruction: "Create a stack of block: pink over red over yello
 import base64
 import requests
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "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"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "YOUR API KEY"))
 
 # Function to encode the image
 def encode_image(image_path):
