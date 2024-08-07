@@ -1,4 +1,4 @@
-(define (problem blocksworld1)
+(define (problem blocksworld2)
     (:domain blocksworld)
     (:objects
         orange_block - block
@@ -16,7 +16,9 @@
         (on green_block yellow_block)
         (on blue_block green_block)
         (on purple_block blue_block)
-      
+        (clear purple_block)
+        (clear orange_block)
+        (handempty robot)
     )
     (:goal (and 
         (on purple_block blue_block)

@@ -12,6 +12,11 @@
         (ontable yellow_block)
         (ontable red_block)
         (ontable pink_block)
+        (handempty robot)
+        (clear green_block)
+        (clear yellow_block)
+        (clear red_block)
+        (clear pink_block)
     )
     (:goal (and 
         (on pink_block red_block) 

@@ -7,7 +7,7 @@
         purple_block - block
         orange_block - block
         red_block - block
-        table - table
+        robot - robot
     )
     (:init
         (ontable green_block)
@@ -16,7 +16,8 @@
         (on purple_block pink_block)
         (on orange_block purple_block)
         (on red_block orange_block)
-    
+        (handempty robot)
+        (clear red_block)
     )
     (:goal (and 
         (on green_block yellow_block)

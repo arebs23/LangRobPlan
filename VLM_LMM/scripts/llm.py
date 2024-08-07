@@ -36,6 +36,12 @@ natural language Instruction: "Create a stack of block: pink over red over yello
         (ontable yellow_block)
         (ontable red_block)
         (ontable pink_block)
+        (handempty robot)
+        (clear green_block)
+        (clear yellow_block)
+        (clear red_block)
+        (clear pink_block)
+       
     )
     (:goal (and (on pink_block red_block) (on red_block yellow_block) (on yellow_block green_block)))
 )
@@ -49,7 +55,7 @@ natural language Instruction: "Create a stack of block: pink over red over yello
 import base64
 import requests
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "YOUR API KEY"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
 
 # Function to encode the image
 def encode_image(image_path):
@@ -109,7 +115,7 @@ def analyze_image(img_path, user_prompt, system_prompt):
 
 if __name__ == '__main__':
     img_path = "/home/aregbs/Desktop/VLM_LMM-1/VLM_LMM/Prompt_vlm/blocksworld/block_observation/problem10.png"
-    user_prompt = "Create two stacks of blocks: blue over pink over red, yellow over orange over green."
+    user_prompt = "Create two stacks of blocks: blue over pink over red, yellow over orange over green.."
     response = analyze_image(img_path, user_prompt, system_prompt)
     print(response)
 
