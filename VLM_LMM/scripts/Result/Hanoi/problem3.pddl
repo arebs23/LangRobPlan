@@ -15,6 +15,8 @@
         (on green_disk blue_disk)
         (on blue_disk red_disk)
         (on red_disk peg1)
+        (smaller green_disk blue_disk)
+        (smaller blue_disk red_disk)
     )
     (:goal (and 
         (on red_disk peg3) 

@@ -1,4 +1,4 @@
-(define (problem hanoi2)
+(define (problem hanoi1)
     (:domain hanoi)
     (:objects
         peg1
@@ -13,11 +13,11 @@
         (clear peg3)
         (on green_disk1 peg1)
         (on red_disk1 peg2)
+        (smaller green_disk1 red_disk1)
     )
     (:goal (and 
         (on green_disk1 peg3)
         (on red_disk1 peg3)
-        (clear peg1)
-        (clear peg2)
+        (smaller green_disk1 red_disk1)
     ))
 )

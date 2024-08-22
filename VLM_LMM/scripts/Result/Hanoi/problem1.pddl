@@ -4,30 +4,35 @@
         peg1
         peg2
         peg3
-        disk1  ; largest (orange)
-        disk2  ; red
-        disk3  ; blue
-        disk4  ; green
-        disk5  ; pink
-        disk6  ; yellow
+        yellow_disk
+        pink_disk
+        green_disk
+        blue_disk
+        red_disk
+        orange_disk
     )
     (:init
-        (clear disk6)
+        (clear yellow_disk)
         (clear peg2)
         (clear peg3)
-        (on disk6 disk5)
-        (on disk5 disk4)
-        (on disk4 disk3)
-        (on disk3 disk2)
-        (on disk2 disk1)
-        (on disk1 peg1)
+        (on yellow_disk pink_disk)
+        (on pink_disk green_disk)
+        (on green_disk blue_disk)
+        (on blue_disk red_disk)
+        (on red_disk orange_disk)
+        (on orange_disk peg1)
+        (smaller yellow_disk pink_disk)
+        (smaller pink_disk green_disk)
+        (smaller green_disk blue_disk)
+        (smaller blue_disk red_disk)
+        (smaller red_disk orange_disk)
     )
     (:goal (and 
-        (on disk1 peg3)
-        (on disk2 disk1)
-        (on disk3 disk2)
-        (on disk4 disk3)
-        (on disk5 disk4)
-        (on disk6 disk5)
+        (on orange_disk peg3) 
+        (on red_disk orange_disk) 
+        (on blue_disk red_disk) 
+        (on green_disk blue_disk) 
+        (on pink_disk green_disk) 
+        (on yellow_disk pink_disk)
     ))
 )

@@ -1,0 +1,37 @@
+I want you to solve a planning problem. Your tasks are:
+
+1. Generate the goal state in PDDL format based on user input in form of natural language.
+2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
+3. Generate the initial and final position values of the objects in pixel coordinates.
+An example is:
+
+natural language Instruction: "Rearrange the table for breakfast and give the final pose of the objects."
+(define (problem breakfast)
+    (:domain breakfast)
+    (:objects
+        knife - tool
+        apple - fruit
+        bowl  - tool
+        plate - tool
+        robot - robot
+        w1_s w2_s w3_s w4_s w1_f w2_f w3_f  - location
+    )
+    (:init
+        (at knife w1_s)
+        (at pear w2_s)
+        (ontable pear)
+        (at bowl w3_s)
+        (at plate w4_s)
+        (free robot)
+      
+    )
+    (:goal
+        (and
+            (at knife w1_f)
+             (at bowl w2_f)
+              (at plate w3_f)
+            (in pear plate)
+           
+        )
+    )
+)
