@@ -24,6 +24,7 @@ natural language Instruction: "Move all disks to the rightmost peg while keeping
             (on blue_disk1 pink_disk1)
             (on pink_disk1 peg1)
             (smaller green_disk1 blue_disk1)
+            (smaller green_disk1 pink_disk1)
             (smaller blue_disk1 pink_disk1)
             
         )
