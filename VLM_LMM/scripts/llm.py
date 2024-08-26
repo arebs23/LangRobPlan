@@ -7,39 +7,27 @@ import re
 
 
 
-system_prompt = '''
-I want you to solve a planning problem. Your tasks are:
+system_prompt = "VLM_LMM/scripts/block_prompt.txt"
+system_command = "VLM_LMM/Prompt_vlm/blocksworld/instructions/problem1.txt"
 
-1. Generate the goal state in PDDL format based on user input in form of natural language.
-2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
+with open(system_prompt, "r") as file:
+    # Read the entire content of the file
+    file_content = file.read()
 
-An example is:
-
-natural language Instruction: "Create a stack of block: pink over red over yellow over green."
-(define (problem blocksworld1)
-    (:domain blocksworld)
-    (:objects
-        green_block - block
-        yellow_block - block
-        red_block - block
-        pink_block - block
-        robot - robot
-    )
-    (:init
-        (ontable green_block)
-        (ontable yellow_block)
-        (ontable red_block)
-        (ontable pink_block)
-        (handempty robot)
-    )
-    (:goal (and (on pink_block red_block) (on red_block yellow_block) (on yellow_block green_block)))
-)
-
-'''
+# At this point, file_content is a string containing the entire content of the file
+print(file_content)
 
 
 
-# img_path = '/home/victor/Downloads/problem1.jpg'
+
+
+
+with open(system_command, "r") as command_file:
+    # Read the entire content of the file
+    cmd_file_content = command_file.read()
+
+# At this point, file_content is a string containing the entire content of the file
+print(cmd_file_content)
 
 
 import base64
@@ -136,12 +124,12 @@ def extract_and_save_pddl(input_text, file_path):
 #     return response
 
 if __name__ == '__main__':
-    img_path = "/home/aregbs/Desktop/LangRobPlan/VLM_LMM/Prompt_vlm/blocksworld/block_observation/problem4.png"
-    user_prompt = "Create a stack of blocks: orange over yellow over green over purple over red."
+    img_path = "VLM_LMM/Prompt_vlm/blocksworld/block_observation/problem1.png"
+    user_prompt = system_command
     response = analyze_image(img_path, user_prompt, system_prompt)
     # print(type(response))
     # print(f'The response is:{response}')
-    file_path = "/home/aregbs/Desktop/LangRobPlan/VLM_LMM/scripts/Result/pddl-blockworld/problem4.pddl"
+    file_path = "VLM_LMM/scripts/Result/blocksworld/problem4.pddl"
     parse = extract_and_save_pddl(response, file_path=file_path)
     print(parse)
     
