@@ -8,7 +8,6 @@ import re
 
 
 system_prompt = '''
-
 I want you to solve a planning problem. Your tasks are:
 
 1. Generate the goal state in PDDL format based on user input in form of natural language.
@@ -16,31 +15,25 @@ I want you to solve a planning problem. Your tasks are:
 
 An example is:
 
-natural language Instruction: "Move all disks to the rightmost peg while keeping a rule that larger disks are below."
-(define (problem hanoi1)
-    (:domain hanoi)
+natural language Instruction: "Create a stack of block: pink over red over yellow over green."
+(define (problem blocksworld1)
+    (:domain blocksworld)
     (:objects
-        peg1
-        peg2
-        peg3
-        green_disk1
-        blue_disk1
-        pink_disk1
+        green_block - block
+        yellow_block - block
+        red_block - block
+        pink_block - block
+        robot - robot
     )
-        (:init
-            (clear green_disk1)
-            (clear peg2)
-            (clear peg3)
-            (on green_disk1 blue_disk1)
-            (on blue_disk1 pink_disk1)
-            (on pink_disk1 peg1)
-            (smaller green_disk1 blue_disk1)
-            (smaller blue_disk1 pink_disk1)
-            
-        )
-    (:goal (and (on pink_disk1 peg3) (on blue_disk1 pink_disk1) (on green_disk1 blue_disk1)))
+    (:init
+        (ontable green_block)
+        (ontable yellow_block)
+        (ontable red_block)
+        (ontable pink_block)
+        (handempty robot)
+    )
+    (:goal (and (on pink_block red_block) (on red_block yellow_block) (on yellow_block green_block)))
 )
-
 
 '''
 
@@ -143,12 +136,12 @@ def extract_and_save_pddl(input_text, file_path):
 #     return response
 
 if __name__ == '__main__':
-    img_path = "/home/aregbs/Desktop/VLM_LMM-1/VLM_LMM/Prompt_vlm/hanoi/hanoi-observation/problem9.png"
-    user_prompt = "Move all disks to the rightmost peg while keeping a rule that larger disks are below."
+    img_path = "/home/aregbs/Desktop/LangRobPlan/VLM_LMM/Prompt_vlm/blocksworld/block_observation/problem4.png"
+    user_prompt = "Create a stack of blocks: orange over yellow over green over purple over red."
     response = analyze_image(img_path, user_prompt, system_prompt)
     # print(type(response))
     # print(f'The response is:{response}')
-    file_path = "/home/aregbs/Desktop/VLM_LMM-1/VLM_LMM/scripts/Result/Hanoi/problem9.pddl"
+    file_path = "/home/aregbs/Desktop/LangRobPlan/VLM_LMM/scripts/Result/pddl-blockworld/problem4.pddl"
     parse = extract_and_save_pddl(response, file_path=file_path)
     print(parse)
     

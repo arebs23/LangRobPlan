@@ -20,6 +20,7 @@ natural language Instruction: "Create a stack of block: pink over red over yello
         (ontable yellow_block)
         (ontable red_block)
         (ontable pink_block)
+        (handempty robot)
     )
     (:goal (and (on pink_block red_block) (on red_block yellow_block) (on yellow_block green_block)))
 )
