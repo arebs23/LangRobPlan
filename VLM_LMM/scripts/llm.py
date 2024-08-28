@@ -7,15 +7,17 @@ import re
 
 
 
-system_prompt = "VLM_LMM/scripts/block_prompt.txt"
-system_command = "VLM_LMM/Prompt_vlm/blocksworld/instructions/problem1.txt"
+system_prompt = "VLM_LMM/scripts/hanoi_prompt.txt"
+system_command = "VLM_LMM/Prompt_vlm/hanoi/instructions/problem.txt"
+img_path = "VLM_LMM/Prompt_vlm/hanoi/observation/problem2.png"
+file_path = "VLM_LMM/scripts/Result/hanoi/problem2.pddl"
 
 with open(system_prompt, "r") as file:
     # Read the entire content of the file
     file_content = file.read()
 
 # At this point, file_content is a string containing the entire content of the file
-print(file_content)
+#print(file_content)
 
 
 
@@ -45,12 +47,12 @@ def encode_image(image_path):
 
 MODEL="gpt-4o"
 @lru_cache()
-def analyze_image(img_path, user_prompt, system_prompt):
+def analyze_image(img_path, user_prompt, file_content):
     base64_image = encode_image(img_path)
     response = client.chat.completions.create(
     model=MODEL,
     messages=[
-        {"role": "system", "content": system_prompt},
+        {"role": "system", "content": file_content},
         {"role": "user", "content": [
             {"type": "text", "text": user_prompt},
             {"type": "image_url", "image_url": {
@@ -124,12 +126,11 @@ def extract_and_save_pddl(input_text, file_path):
 #     return response
 
 if __name__ == '__main__':
-    img_path = "VLM_LMM/Prompt_vlm/blocksworld/block_observation/problem1.png"
+    
     user_prompt = system_command
-    response = analyze_image(img_path, user_prompt, system_prompt)
+    response = analyze_image(img_path, user_prompt, file_content)
     # print(type(response))
-    # print(f'The response is:{response}')
-    file_path = "VLM_LMM/scripts/Result/blocksworld/problem4.pddl"
+    #print(f'The response is:{response}')
     parse = extract_and_save_pddl(response, file_path=file_path)
     print(parse)
     
