@@ -9,8 +9,8 @@ import re
 
 system_prompt = "VLM_LMM/scripts/hanoi_prompt.txt"
 system_command = "VLM_LMM/Prompt_vlm/hanoi/instructions/problem.txt"
-img_path = "VLM_LMM/Prompt_vlm/hanoi/observation/problem2.png"
-file_path = "VLM_LMM/scripts/Result/hanoi/problem2.pddl"
+img_path = "VLM_LMM/Prompt_vlm/hanoi/observation/problem5.png"
+file_path = "VLM_LMM/scripts/Result/hanoi/problem5.pddl"
 
 with open(system_prompt, "r") as file:
     # Read the entire content of the file
@@ -19,6 +19,10 @@ with open(system_prompt, "r") as file:
 # At this point, file_content is a string containing the entire content of the file
 #print(file_content)
 
+key = "VLM_LMM/scripts/Result/key.txt"
+with open(key, "r") as file:
+    # Read the entire content of the file
+    key_file_content = file.read()
 
 
 
@@ -29,13 +33,13 @@ with open(system_command, "r") as command_file:
     cmd_file_content = command_file.read()
 
 # At this point, file_content is a string containing the entire content of the file
-print(cmd_file_content)
+#print(cmd_file_content)
 
 
 import base64
 import requests
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", key_file_content))
 
 # Function to encode the image
 def encode_image(image_path):
@@ -62,8 +66,6 @@ def analyze_image(img_path, user_prompt, file_content):
     ],
     temperature=0.0,
 )
-
-
     
     response = response.choices[0].message.content
     return response
