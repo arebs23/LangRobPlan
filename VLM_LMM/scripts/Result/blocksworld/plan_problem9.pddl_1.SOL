@@ -1,0 +1,30 @@
+
+; Version LPG-td-1.4
+; Seed 66586367
+; Command line: /home/pofe/dev_ws/src/athena/planning/athena_planner/Planners/LPG-td-1.4/lpg-td -o /home/pofe/Papers/PlanGpt/LangRobPlan/VLM_LMM/Prompt_vlm/blocksworld/domain.pddl -f /home/pofe/Papers/PlanGpt/LangRobPlan/VLM_LMM/scripts/Result/pddl-blockworld/problem9.pddl -n 1 
+; Problem /home/pofe/Papers/PlanGpt/LangRobPlan/VLM_LMM/scripts/Result/pddl-blockworld
+; Actions having STRIPS duration
+; Time 0.01
+; Search time 0.01
+; Parsing time 0.00
+; Mutex time 0.00
+; NrActions 18
+
+0:   (UNSTACK PURPLE_BLOCK BLUE_BLOCK ROBOT) [1]
+1:   (PUT-DOWN PURPLE_BLOCK ROBOT) [1]
+2:   (UNSTACK BLUE_BLOCK GREEN_BLOCK ROBOT) [1]
+3:   (PUT-DOWN BLUE_BLOCK ROBOT) [1]
+4:   (UNSTACK GREEN_BLOCK YELLOW_BLOCK ROBOT) [1]
+5:   (STACK GREEN_BLOCK BLUE_BLOCK ROBOT) [1]
+6:   (UNSTACK YELLOW_BLOCK RED_BLOCK ROBOT) [1]
+7:   (STACK YELLOW_BLOCK PURPLE_BLOCK ROBOT) [1]
+8:   (PICK-UP RED_BLOCK ROBOT) [1]
+9:   (STACK RED_BLOCK ORANGE_BLOCK ROBOT) [1]
+10:   (UNSTACK YELLOW_BLOCK PURPLE_BLOCK ROBOT) [1]
+11:   (STACK YELLOW_BLOCK RED_BLOCK ROBOT) [1]
+12:   (UNSTACK GREEN_BLOCK BLUE_BLOCK ROBOT) [1]
+13:   (STACK GREEN_BLOCK YELLOW_BLOCK ROBOT) [1]
+14:   (PICK-UP BLUE_BLOCK ROBOT) [1]
+15:   (STACK BLUE_BLOCK GREEN_BLOCK ROBOT) [1]
+16:   (PICK-UP PURPLE_BLOCK ROBOT) [1]
+17:   (STACK PURPLE_BLOCK BLUE_BLOCK ROBOT) [1]
