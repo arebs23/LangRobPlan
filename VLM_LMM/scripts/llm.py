@@ -9,8 +9,8 @@ import re
 
 system_prompt = "VLM_LMM/scripts/hanoi_prompt.txt"
 system_command = "VLM_LMM/Prompt_vlm/hanoi/instructions/problem.txt"
-img_path = "VLM_LMM/Prompt_vlm/hanoi/observation/problem5.png"
-file_path = "VLM_LMM/scripts/Result/hanoi/problem5.pddl"
+img_path = "VLM_LMM/Prompt_vlm/hanoi/observation/problem7.png"
+file_path = "VLM_LMM/scripts/Result/hanoi/problem7.pddl"
 
 with open(system_prompt, "r") as file:
     # Read the entire content of the file
@@ -19,7 +19,7 @@ with open(system_prompt, "r") as file:
 # At this point, file_content is a string containing the entire content of the file
 #print(file_content)
 
-key = "VLM_LMM/scripts/Result/key.txt"
+key = "VLM_LMM/scripts/key.txt"
 with open(key, "r") as file:
     # Read the entire content of the file
     key_file_content = file.read()
