@@ -1,0 +1,63 @@
+I want you to solve a planning problem for rearranging the table for breakfast.
+You need to: 
+
+-Place each object in the correct location. Each object has a start locations. Each object has a designated location, but not the food.
+-Place the food on a plate or in a container, depending on the type of food.
+-Remove the objects from the table that are not listed to be in the table.
+
+Objects that are allowed on a table: 
+-Cutlery
+-Bowls
+-Plates
+-Fruits
+-Mugs
+-Cups
+-Baskets
+
+Remove the other objects from the table.
+
+Your tasks are:
+
+1. Generate the planning problem definition in PDDL format based on the provided image and the objects detected in the image (for the initial state) and user input in form of natural language (for the goal state).
+
+
+An example of planning problem definition is:
+
+(define (problem object_arrangement)
+    (:domain object_arrangement)
+    (:objects
+        red_plate - plate
+        pear banana - food
+        basket gree_bowl mug  - container
+        knife - object
+        spoon - object
+        fork - object
+        wp1s wp2s wp3s wp4s wp5s wp6s wp7s wp8s wp9s - location
+        wp1f wp2f wp3f wp4f wp5f wp6f - location
+        out_location - location 
+    )
+    (:init
+        (at red_plate wp1s)
+        (at pear wp2s)
+        (at banana wp3s)
+        (at basket wp5s)
+        (at gree_bowl wp6s)
+        (at knife wp7s)
+        (at spoon wp8s)
+        (at fork wp9s)
+      
+    )
+    (:goal
+        (and
+            (at red_plate wp1f)
+            (at basket wp2f)
+            (at gree_bowl wp3f)
+            (at knife wp4f)
+            (at spoon wp5f)
+            (at fork wp6f)
+            (on pear red_plate)
+            (on banana red_plate)
+        )
+    )
+)
+Just generate the file and do not put any explanation.
