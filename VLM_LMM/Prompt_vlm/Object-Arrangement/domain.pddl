@@ -4,6 +4,7 @@
 
     (:types ;todo: enumerate types and their hierarchy here, e.g. car truck bus - vehicle
         location 
+        cutlery - object
         container - object
         plate - object
         food - object 
@@ -54,6 +55,20 @@
     )
 
     (:action place_on_table
+        :parameters (?robot - robot ?obj - object ?loc - location)
+        :precondition(
+      and
+            (not (free ?robot))
+            (at ?robot ?loc)
+        )
+        :effect(
+      and
+            (free ?robot)
+            (at ?obj ?location) 
+    )
+    )
+
+    (:action remove_from_table
         :parameters (?robot - robot ?obj - object ?loc - location)
         :precondition(
       and
