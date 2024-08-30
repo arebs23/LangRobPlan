@@ -1,13 +1,21 @@
+Rearrange the table for breakfast. Remove the objects that are not listed to be in the table.
+Objects that are allowed on a table: 
+Cutlery
+Bowls
+Plates
+Foods
+Mugs
+Cups
+Baskets
 
-
-I want you to solve a planning problem. Your tasks are:
+Your tasks are:
 
 1. Generate the goal state in PDDL format based on user input in form of natural language.
 2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
 
 An example is:
 
-natural language Instruction: "Slice the cucumber and place the sliced cucumbers in a bowl."
+Natural language Instruction: "Slice the cucumber and place the sliced cucumbers in a bowl."
 (define (problem cooking1)
     (:domain cooking)
     (:objects
@@ -20,10 +28,7 @@ natural language Instruction: "Slice the cucumber and place the sliced cucumbers
         (available cucumber)
         (is-whole cucumber)
         (is-workspace cutting_board)
-        (free a_bot)
-        (carry b_bot knife)
-        (can-cut knife)
-        (at cucumber counter)
+      
     )
     (:goal
         (and
@@ -31,37 +36,4 @@ natural language Instruction: "Slice the cucumber and place the sliced cucumbers
             (is-sliced cucumber)
         )
     )
-)
-
-Detected Objects:
-(:objects 
-    carrot - vegetable
-    bowl - location
-    cutting_board - location
-    counter - location
-    knife - tool
-    robot1 - robot
-    robot2 - robot )
-
-Domain Knowledge:
-(:domain cooking)
-(:predicates
-    (available ?x - vegetable)
-    (is-whole ?x - vegetable)
-    (is-sliced ?x - vegetable)
-    (is-workspace ?x - location)
-    (free ?r - robot)
-    (carry ?r - robot ?t - tool)
-    (can-cut ?t - tool)
-    (at ?x - object ?y - location)
-)
-(:actions
-    (action slice
-        :parameters (?r - robot ?v - vegetable ?t - tool ?l - location)
-        :precondition (and (at ?v ?l) (carry ?r ?t) (can-cut ?t))
-        :effect (and (is-sliced ?v) (not (is-whole ?v))))
-    (action place
-        :parameters (?r - robot ?v - vegetable ?l - location)
-        :precondition (and (carry ?r ?v) (is-workspace ?l))
-        :effect (and (at ?v ?l) (free ?r)))
 )
