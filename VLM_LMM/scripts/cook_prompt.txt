@@ -1,14 +1,4 @@
-Rearrange the table for breakfast. Remove the objects that are not listed to be in the table.
-Objects that are allowed on a table: 
-Cutlery
-Bowls
-Plates
-Foods
-Mugs
-Cups
-Baskets
-
-Your tasks are:
+I want you to solve a planning problem. Your tasks are:
 
 1. Generate the goal state in PDDL format based on user input in form of natural language.
 2. Generate the initial state in PDDL format based on the provided image and the objects detected in the image.
