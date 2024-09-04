@@ -1,33 +1,33 @@
 (define (problem object_arrangement)
     (:domain object_arrangement)
     (:objects
-        green_bowl - bowl
-        pear banana - fruit
-        blue_mug - mug
-        glass - cup
-        knife fork - cutlery
+        fork - cutlery
+        knife - cutlery
+        bowl - bowl
+        banana pear - fruit
+        mug glass - container
         wp1s wp2s wp3s wp4s wp5s wp6s wp7s - location
         wp1f wp2f wp3f wp4f wp5f wp6f - location
         out_location - location 
     )
     (:init
-        (at green_bowl wp1s)
-        (at pear wp2s)
-        (at banana wp3s)
-        (at blue_mug wp4s)
-        (at glass wp5s)
-        (at knife wp6s)
-        (at fork wp7s)
+        (at fork wp1s)
+        (at knife wp2s)
+        (at bowl wp3s)
+        (at banana wp4s)
+        (at pear wp5s)
+        (at mug wp6s)
+        (at glass wp7s)
     )
     (:goal
         (and
-            (at green_bowl wp1f)
-            (at blue_mug wp2f)
-            (at glass wp3f)
-            (at knife wp4f)
-            (at fork wp5f)
-            (on pear green_bowl)
-            (on banana green_bowl)
+            (at fork wp1f)
+            (at knife wp2f)
+            (at bowl wp3f)
+            (at mug wp4f)
+            (at glass wp5f)
+            (on banana bowl)
+            (on pear bowl)
         )
     )
 )

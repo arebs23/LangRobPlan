@@ -7,15 +7,15 @@
         wp1f wp2f wp3f - location
     )
     (:init
-        (at basket wp1s)
-        (at banana wp2s)
+        (at basket wp2s)
+        (at banana wp1s)
         (at pear wp3s)
     )
     (:goal
         (and
             (at basket wp1f)
-            (in banana basket)
-            (in pear basket)
+            (on banana basket)
+            (on pear basket)
         )
     )
 )
