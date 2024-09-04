@@ -13,12 +13,14 @@ Objects that are allowed on a table:
 -Mugs
 -Cups
 -Baskets
+-Glass
 
 Remove the other objects from the table.
 
 Your tasks are:
 
 1. Generate the planning problem definition in PDDL format based on the provided image and the objects detected in the image (for the initial state) and user input in form of natural language (for the goal state).
+If you have multiple objects of the same type (e.g., two knifes or two plates), include the color of the objects to differentiate between them.
 
 
 An example of planning problem definition is:
@@ -26,37 +28,32 @@ An example of planning problem definition is:
 (define (problem object_arrangement)
     (:domain object_arrangement)
     (:objects
-        red_plate - plate
-        pear banana - food
-        basket gree_bowl mug  - container
+        plate - plate
+        pear - food
+        basket bowl - container
         knife - object
-        spoon - object
-        fork - object
-        wp1s wp2s wp3s wp4s wp5s wp6s wp7s wp8s wp9s - location
-        wp1f wp2f wp3f wp4f wp5f wp6f - location
+        screwdriver - tool
+        wp1s wp2s wp3s wp4s wp5s wp6s - location
+        wp1f wp2f wp3f wp4f - location
         out_location - location 
     )
     (:init
-        (at red_plate wp1s)
+        (at plate wp1s)
         (at pear wp2s)
-        (at banana wp3s)
-        (at basket wp5s)
-        (at gree_bowl wp6s)
-        (at knife wp7s)
-        (at spoon wp8s)
-        (at fork wp9s)
+        (at basket wp3s)
+        (at bowl wp4s)
+        (at knife wp5s)
+        (at screwdriver wp6s)
       
     )
     (:goal
         (and
-            (at red_plate wp1f)
+            (at plate wp1f)
             (at basket wp2f)
-            (at gree_bowl wp3f)
+            (at bowl wp3f)
             (at knife wp4f)
-            (at spoon wp5f)
-            (at fork wp6f)
-            (on pear red_plate)
-            (on banana red_plate)
+            (on pear plate)
+            (at screwdriver out_location)
         )
     )
 )
